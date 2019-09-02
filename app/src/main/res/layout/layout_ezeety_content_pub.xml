@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal">
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"/>
+           <!-- <android.support.v4.widget.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@mipmap/circled_user_male_60px"
+
+                />-->
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/circled_user_male_60px"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_marginTop="10dp"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Name"
+        android:id="@+id/UserNameContentRecom"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Samedi 14:34"
+        android:textSize="15dp"
+        android:id="@+id/dateRecom"/>
+</LinearLayout>
+
+            <Space
+                android:layout_width="23dp"
+                android:layout_height="81dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="20" />
+            <TextView
+                android:layout_width="57dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/text_button_style_green"
+                android:gravity="center"
+                android:text="Suivre"
+                android:id="@+id/textButtonSuivreRecom"
+                android:textAlignment="center" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="32dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="8dp"
+                android:src="@mipmap/menu_vertical_48px"
+                android:id="@+id/imageButtonMenuContextuelRecom"
+                />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2"/>
+        </LinearLayout>
+
+</RelativeLayout>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="276dp"
+            android:src="@mipmap/image_sample_96px"
+            android:id="@+id/imageFocusRecom"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="center"
+                android:id="@+id/heartimageButtonRecom"
+                android:src="@mipmap/hearts_30px"
+                />
+
+            <TextView
+                android:layout_width="86dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="240dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/text_button_gray"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:text="Reserver"
+                android:textSize="18dp"
+                android:id="@+id/textButtonReserverRecom"/>
+        </LinearLayout>
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:id="@+id/textViewDescriptionRecom"
+            android:textSize="15dp"
+            android:text="Description of Publication Description of Publication Description of Publication Description of Publication Description of Publication"/>
+    </LinearLayout>
+</LinearLayout>
