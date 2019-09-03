@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context=".ezeety_home">
+
     <EditText
         android:id="@+id/editTextSearchHome"
         android:layout_width="347dp"
@@ -14,6 +15,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints=""
         android:background="@drawable/ezeety_home_search_style"
         android:drawableStart="@mipmap/search_35px"
         android:ems="10"
@@ -26,21 +29,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:autofillHints="" tools:targetApi="o" />
+        tools:targetApi="o" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="393dp"
         android:layout_height="32dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearchHome">
 
         <TextView
             android:id="@+id/textViewButtonRecom"
@@ -54,10 +58,7 @@
             android:paddingEnd="3dp"
             android:text="@string/recommandations_home_text"
             android:textColor="@android:color/tertiary_text_light"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toStartOf="@+id/textViewButtonAmbassad"
-            app:layout_constraintTop_toBottomOf="@+id/textViewButtonRecom" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textViewButtonAmbassad"
@@ -71,10 +72,7 @@
             android:paddingEnd="3dp"
             android:text="@string/ambassadeurs_home_text"
             android:textColor="@android:color/tertiary_text_light"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toStartOf="@+id/textViewButtonParcr"
-            app:layout_constraintTop_toBottomOf="@+id/textViewButtonRecom" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/textViewButtonParcr"
@@ -88,10 +86,7 @@
             android:paddingEnd="3dp"
             android:text="@string/parcours_home_text"
             android:textColor="@android:color/tertiary_text_light"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewButtonRecom" />
+            android:textSize="13sp" />
     </LinearLayout>
 
     <ScrollView
@@ -99,12 +94,14 @@
         android:layout_width="395dp"
         android:layout_height="574dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,16 +144,16 @@
                     android:layout_width="196dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
-                    android:src="@mipmap/grid_02_35px_1"
-                    android:contentDescription="@string/imageviewgrid_tex" />
+                    android:contentDescription="@string/imageviewgrid_tex"
+                    android:src="@mipmap/grid_02_35px_1" />
 
                 <ImageView
                     android:id="@+id/listlisStyle"
                     android:layout_width="196dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
-                    android:src="@mipmap/list_35px"
-                    android:contentDescription="@string/imageviewlist_text" />
+                    android:contentDescription="@string/imageviewlist_text"
+                    android:src="@mipmap/list_35px" />
             </LinearLayout>
 
             <TextView

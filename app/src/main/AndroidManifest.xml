@@ -13,8 +13,7 @@
         >
 
 
-    <activity android:name="com.packag.ezeety.ezeety_home"
-        android:screenOrientation="portrait"/>
+    <activity android:name="com.packag.ezeety.ezeety_home"/>
         <activity android:name="com.packag.ezeety.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

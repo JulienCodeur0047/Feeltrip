@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".ezeety_home"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+      <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+          android:layout_height="34dp"
+          android:layout_margin="10dp"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginRight="10dp"
+          android:layout_marginBottom="10dp"
+          android:shadowColor="#666666"
+          android:shadowDx="0"
+          android:shadowDy="0"
+            android:shadowRadius="10"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="7dp">
+        <EditText
+            android:id="@+id/editTextSearchHome"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/raduis_shadows"
+            android:drawableStart="@drawable/search_35px"
+
+            android:hint="Recherche"
+            android:inputType="text"
+            tools:ignore="RtlHardcoded" />
+      </android.support.v7.widget.CardView>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewButtonRecom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/ezeety_edittext_style"
+                    android:paddingStart="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Recommandation"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/textViewButtonAmbassad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/ezeety_edittext_style"
+                    android:paddingStart="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Ambassadeur"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/textViewButtonParcr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/ezeety_edittext_style"
+                    android:paddingStart="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="3dp"
+                    android:paddingBottom="3dp"
+                    android:text="Parcours"
+                    android:textSize="12sp"
+                    />
+
+
+            <TextView
+                android:id="@+id/textViewButtonAdressPart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/ezeety_edittext_style"
+                android:paddingStart="3dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="3dp"
+                android:paddingBottom="3dp"
+                android:text="Adresse partenaire"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+        </HorizontalScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/rotobofontforTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/que_recherchez_vous_string"
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                </HorizontalScrollView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/listlisStyle"
+                        android:layout_width="196dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="5dp"
+                        android:contentDescription="@string/imageviewgrid_tex"
+                        android:src="@drawable/grid_02_35px_1"/>
+
+                    <ImageView
+                        android:id="@+id/listGridStyle"
+                        android:layout_width="196dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="5dp"
+                        android:contentDescription="@string/imageviewgrid_tex"
+                        android:src="@drawable/list_35px"/>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/rotobofontforTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/restaurant_et_cuisine_du_monde"
+                    android:textColor="#000000"
+                    android:textSize="22sp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
