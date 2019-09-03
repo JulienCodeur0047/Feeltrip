@@ -76,7 +76,7 @@
         android:background="@drawable/ezeety_edittext_style"
         android:ems="10"
         android:hint="Mot de passe"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonConnexion"

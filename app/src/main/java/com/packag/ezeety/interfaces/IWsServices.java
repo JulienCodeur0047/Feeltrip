@@ -1,6 +1,6 @@
 package com.packag.ezeety.interfaces;
 
-import com.packag.ezeety.Pojos.Lieu;
+import com.packag.ezeety.Pojos.Lieux;
 import com.packag.ezeety.Pojos.LoginResponse;
 import com.packag.ezeety.Pojos.User;
 
@@ -8,7 +8,6 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -25,5 +24,5 @@ public interface IWsServices {
     );
 
     @GET("lieu/getall")
-    Call<Lieu> GetAllLieu();
+    Call<Lieux> GetAllLieu();
 }
