@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".ezeety_home"
     tools:ignore="MissingDefaultResource">
 
     <LinearLayout
@@ -33,7 +32,7 @@
 
         </LinearLayout>
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/editTextEmailRegistration"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -49,7 +48,7 @@
             android:paddingEnd="10dp"
             android:textSize="12dp"/>
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editTextPasswordRegistration"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -64,38 +63,41 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="12dp"/>
+        <CheckBox
+            android:id="@+id/checkboxSavePasswordRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:fontFamily="@font/roboto"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="Enregistrer le mot de passe"
+            android:textColor="@color/colorRegular"
+            android:textSize="11sp"
+
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp">
 
         </LinearLayout>
         <Button
-            android:id="@+id/buttonConnexion"
+            android:id="@+id/buttonNextRegistrationFirst"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/button_style_primary"
-            android:text="@string/connexionText"
+            android:text="suivant"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             />
-        <TextView
-            android:id="@+id/textViewMotdepaaseOublier"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="@string/mot_de_passe_oublier"
-            android:textSize="12sp"/>
+
         <Button
-            android:id="@+id/buttonConnexionFacebook"
+            android:id="@+id/buttonRegistrationFacebook"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginLeft="50dp"
@@ -105,13 +107,13 @@
             android:drawableLeft="@mipmap/facebook_48px"
             android:paddingLeft="50dp"
             android:paddingRight="40dp"
-            android:text="@string/se_conncter_sur_facebookText"
+            android:text="S'incrire avec Facebook"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/background_light"
             android:textSize="12sp"/>
         <Button
-            android:id="@+id/buttonConnexionGoogle"
+            android:id="@+id/buttonRegistrationGoogle"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginLeft="50dp"
@@ -121,7 +123,7 @@
             android:drawableLeft="@mipmap/google_plus_40px_1"
             android:paddingLeft="50dp"
             android:paddingRight="40dp"
-            android:text="@string/se_conncter_sur_google"
+            android:text="S'incrire avec Google"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/background_light"
@@ -142,10 +144,10 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/vous_n_avez_pas_de_compte"
+                android:text="Vous avez déjà un compte?"
                 android:textSize="14sp" />
             <TextView
-                android:id="@+id/textViewInscrire"
+                android:id="@+id/textViewLoginRegistration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -155,7 +157,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="@string/inscrivez_vous"
+                android:text="Connectez-vous."
                 android:textColor="@android:color/background_dark"
                 android:textSize="12sp"/>
         </LinearLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Bienvenu sur "
+                android:textAlignment="center"
+                android:textColor="@color/colorRegular"
+                android:textSize="18sp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="EZEETY"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/textViewuserName_wp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="julie_damien"
+            android:textAlignment="center"
+            android:textColor="@color/colorRegular"
+            android:textSize="18sp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/roboto"
+            android:text="Découvrez le monde autrement en vous abonnant à des locaux ou voyageurs et partagez vos plus belles expériences. "
+            android:textAlignment="center"
+            android:textColor="@color/colorRegular"
+            android:textSize="16sp"/>
+        <Button
+            android:id="@+id/button_next_welcome_page"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_style_primary"
+            android:text="Suivant"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/texteditButtonChangeUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="modifier le nom d'utilisateur"
+            android:textAlignment="center"
+            android:textColor="#5BA69D"
+            android:textSize="13dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/texteditTermeandCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/roboto"
+            android:gravity="bottom"
+            android:text="Découvrez le monde autrement en vous abonnant à des locaux ou voyageurs et partagez vos plus belles expériences. "
+            android:textAlignment="center"
+            android:textColor="@color/colorRegular"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

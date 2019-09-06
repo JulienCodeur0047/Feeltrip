@@ -8,7 +8,16 @@ public class LoginResponse {
     private String message;
     private String email;
     private String password;
+    @SerializedName("token")
+    private String token;
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getMessage() {
         return message;

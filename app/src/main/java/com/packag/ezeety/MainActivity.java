@@ -1,19 +1,14 @@
 package com.packag.ezeety;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Checkable;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.packag.ezeety.Pojos.LoginResponse;
 import com.packag.ezeety.Remote.RetrofitFactory;
 import com.packag.ezeety.interfaces.IWsServices;
@@ -22,7 +17,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setAllWidget();
+       setAllWidget();
         buttonConnexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAllWidget() {
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonConnexion = (Button) findViewById(R.id.buttonConnexion);
-        buttonConnexionFacebook = (Button) findViewById(R.id.buttonConnexionFacebook);
-        buttonConnexionGoogle = (Button) findViewById(R.id.buttonConnexionGoogle);
-        textViewResetPassword = (TextView) findViewById(R.id.textViewMotdepaaseOublier);
-        textViewInscrire = (TextView) findViewById(R.id.textViewInscrire);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        buttonConnexion = findViewById(R.id.buttonConnexion);
+        buttonConnexionFacebook = findViewById(R.id.buttonConnexionFacebook);
+        buttonConnexionGoogle = findViewById(R.id.buttonConnexionGoogle);
+        textViewResetPassword = findViewById(R.id.textViewMotdepaaseOublier);
+        textViewInscrire = findViewById(R.id.textViewInscrire);
     }
 
     private void LoginProcessing(String email, String password) {
@@ -74,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if(response.isSuccessful()){
                     LoginResponse result = response.body();
-                    String message = result.getMessage().toString();
                     if(result.getMessage().equals("login successful")){
                         //Show Home activity
                         Intent intent = new Intent(MainActivity.this, ezeety_home.class);

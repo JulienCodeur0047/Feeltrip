@@ -20,9 +20,9 @@ public interface IWsServices {
     @POST("auth/login")
     Call<LoginResponse> isValideUser(
             @Field("email") String email,
-            @Field("password") String passwoord
+            @Field("password") String password
     );
 
-    @GET("lieu/getall")
+    @GET("lieu/get_all")
     Call<Lieux> GetAllLieu();
 }

@@ -36,7 +36,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/raduis_shadows"
-            android:drawableStart="@drawable/search_35px"
+            android:drawableStart="@drawable/search_glass"
 
             android:hint="Recherche"
             android:inputType="text"
