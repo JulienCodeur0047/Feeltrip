@@ -26,11 +26,21 @@
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/imageviewlogo_description"
             android:src="@drawable/logo" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp">
+            android:layout_height="20dp">
 
         </LinearLayout>
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_marginLeft="54dp"
+            android:layout_marginRight="54dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/roboto"
+            android:text="Inscription"
+            android:textColor="@color/colorAccent"/>
         <EditText
             android:id="@+id/editTextEmailRegistration"
             style="@style/Widget.AppCompat.EditText"
@@ -88,7 +98,7 @@
             android:layout_height="42dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/button_style_primary"
             android:text="suivant"
             android:textAllCaps="false"
@@ -147,7 +157,7 @@
                 android:text="Vous avez déjà un compte?"
                 android:textSize="14sp" />
             <TextView
-                android:id="@+id/textViewLoginRegistration"
+                android:id="@+id/textViewLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

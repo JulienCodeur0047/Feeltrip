@@ -23,6 +23,10 @@ public interface IWsServices {
             @Field("password") String password
     );
 
+    @FormUrlEncoded
+    @POST("auth/login")
+    Call<LoginResponse> getToken();
+
     @GET("lieu/get_all")
     Call<Lieux> GetAllLieu();
 }

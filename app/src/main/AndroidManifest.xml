@@ -18,7 +18,12 @@
         >
 
 
-    <activity android:name="com.packag.ezeety.ezeety_home"/>
+        <activity android:name="com.packag.ezeety.ezeety_home"/>
+        <activity android:name="com.packag.ezeety.ezeety_login"/>
+        <activity android:name="com.packag.ezeety.ezeety_registration"/>
+        <activity android:name=".ezeety_registration_second"/>
+        <activity android:name=".ezeety_welcome"/>
+        <activity android:name=".ezeety_profil_getstart"/>
         <activity android:name="com.packag.ezeety.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
