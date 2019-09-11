@@ -46,13 +46,14 @@
             android:background="@drawable/ezeety_edittext_style"
             android:ems="10"
             android:freezesText="true"
-            android:hint="Nom"
+            android:hint="Nom et prenom"
             android:inputType="textEmailAddress"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="12dp"/>
 
         <EditText
+            android:id="@+id/editTextUserNamesecondeReg"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -62,12 +63,13 @@
             android:background="@drawable/ezeety_edittext_style"
             android:ems="10"
             android:freezesText="true"
-            android:hint="Prenoms"
+            android:hint="Nom d'utilisateur"
             android:inputType="textEmailAddress"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="12dp"/>
         <EditText
+            android:id="@+id/edittextDatenaissance"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -77,12 +79,13 @@
             android:background="@drawable/ezeety_edittext_style"
             android:ems="10"
             android:freezesText="true"
-            android:hint="Pays"
+            android:hint="Date de naissance"
             android:inputType="textEmailAddress"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="12dp"/>
         <EditText
+            android:id="@+id/editTextVilleSecondReg"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="42dp"
