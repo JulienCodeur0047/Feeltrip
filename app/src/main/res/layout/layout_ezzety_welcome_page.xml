@@ -114,9 +114,8 @@
             android:layout_marginRight="30dp"
             android:fontFamily="@font/roboto"
             android:gravity="bottom"
-            android:text="Découvrez le monde autrement en vous abonnant à des locaux ou voyageurs et partagez vos plus belles expériences. "
             android:textAlignment="center"
             android:textColor="@color/colorRegular"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

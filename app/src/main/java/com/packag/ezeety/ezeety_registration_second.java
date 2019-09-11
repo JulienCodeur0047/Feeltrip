@@ -19,10 +19,14 @@ public class ezeety_registration_second extends AppCompatActivity {
         buttonNext2 = findViewById(R.id.buttonNextRegistrationSecond);
         editTextNameuserReg2 = findViewById(R.id.edittextNameSecondReg);
 
+
         buttonNext2.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent intentWelcom = new Intent(ezeety_registration_second.this, ezeety_welcome.class);
+                String uName = editTextNameuserReg2.getText().toString();
+                intentWelcom.putExtra("UserName",uName);
                 startActivity(intentWelcom);
             }
         });

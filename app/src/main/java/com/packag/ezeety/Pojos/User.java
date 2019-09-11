@@ -3,6 +3,10 @@ package com.packag.ezeety.Pojos;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
+    @SerializedName("token")
+    private String token;
+    @SerializedName("id")
+    private int id;
     @SerializedName("username")
     private String username;
     @SerializedName("password")
@@ -37,6 +41,22 @@ public class User {
     private int is_certified;
     @SerializedName("is_blacklist")
     private int is_blacklist;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername(){
         return username;

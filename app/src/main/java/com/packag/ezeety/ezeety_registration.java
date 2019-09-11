@@ -37,6 +37,7 @@ public class ezeety_registration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentSecond = new Intent(ezeety_registration.this, ezeety_registration_second.class);
+
                 startActivity(intentSecond);
             }
         });

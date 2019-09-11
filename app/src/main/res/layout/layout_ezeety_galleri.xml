@@ -55,10 +55,17 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/grayscale_background">
     </LinearLayout>
-<TabWidget
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</TabWidget>
+        <TabHost
+            android:layout_width="match_parent"
+            android:layout_height="271dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </TabHost>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

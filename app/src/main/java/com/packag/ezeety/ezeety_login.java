@@ -26,6 +26,10 @@ public class ezeety_login extends AppCompatActivity {
             buttonConnexionGoogle;
     TextView textViewResetPassword
             ,textViewInscrire;
+
+    private String token;
+    private int currentUserId;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +81,11 @@ public class ezeety_login extends AppCompatActivity {
                 if(response.isSuccessful()){
                     LoginResponse result = response.body();
                     if(result.getMessage().equals("login successful")){
-                        //Show Home activity
+                        token = result.getUser().getToken();
+                        currentUserId = result.getUser().getId();
                         Intent intent = new Intent(ezeety_login.this, ezeety_home.class);
+                        intent.putExtra("token", token);
+                        intent.putExtra("currentUserId",currentUserId);
                         startActivity(intent);
                     } else {
                         Toast.makeText(ezeety_login.this,"email ou mot de passe incorrect",Toast.LENGTH_SHORT).show();
@@ -111,7 +118,6 @@ public class ezeety_login extends AppCompatActivity {
         }
         return true;
     }
-
 
 
 }
