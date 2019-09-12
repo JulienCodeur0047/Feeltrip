@@ -12,19 +12,19 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:src="@mipmap/home_thin_50px" />
+        android:src="@drawable/home001" />
     <ImageView
         android:id="@+id/imageButtonUserGroup"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:src="@mipmap/user_group_men_50px" />
+        android:src="@drawable/abonnées1" />
     <ImageView
         android:id="@+id/imageButtonAddCircle"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:src="@mipmap/add_circle_50px" />
+        android:src="@drawable/edit" />
     <ImageView
         android:id="@+id/imageButtonNotif"
         android:layout_width="80dp"
@@ -36,7 +36,7 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:src="@mipmap/user_single_50px" />
+        android:src="@drawable/profil001" />
 
 
 </LinearLayout>
