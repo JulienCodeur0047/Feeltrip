@@ -5,11 +5,16 @@ import com.packag.ezeety.Pojos.LoginResponse;
 import com.packag.ezeety.Pojos.User;
 import com.packag.ezeety.Pojos.Users;
 
+import java.util.Date;
+
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface IWsServices {
@@ -36,4 +41,15 @@ public interface IWsServices {
 
     @GET("user/get_all")
     Call<Users> getListUser();
+
+
+    @Multipart
+    @FormUrlEncoded
+    @POST("user/sign_up_2_ezeety")
+    Call<User> signUp(@Part("profile_picture") MultipartBody.Part file,
+                      @Field("name_firstname") String nomPrenom,
+                      @Field("password") String password,
+                      @Field("birthday")Date dateNaissance,
+                      @Field("email") String email,
+                      @Field("hometown") Integer ville);
 }
