@@ -10,84 +10,86 @@
     tools:context=".MainActivity">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-4dp"
+        android:background="@color/colorPrimary"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <!-- <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="495dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/fond"
+
+
+        />-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="Bienvenue sur Ezeety"
+            android:textAlignment="center"
+            android:textColor="#4F4F4F"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:fontFamily="@font/roboto"
+            android:text="Partage et découvre les plus belles expériences vécues à travers le monde."
+            android:textAlignment="center"
+            android:textColor="#4F4F4F"
+            android:textSize="14sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="-4dp"
-            android:background="@color/colorPrimary"
-            android:gravity="bottom"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:ignore="MissingConstraints">
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <!-- <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="495dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/fond"
-
-
-            />-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
-                android:layout_marginBottom="9dp"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
-                android:text="Bienvenu sur Ezeety"
-                android:textAlignment="center"
-                android:textColor="#4F4F4F"
-                android:textSize="20dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/buttonGoToLogin"
+                android:layout_width="160dp"
+                android:layout_height="46dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:fontFamily="@font/roboto"
-                android:text="Partage et découvre les plus belles expériences vécues à travers le monde."
-                android:textAlignment="center"
-                android:textColor="#4F4F4F"
-                android:textSize="14sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="50dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:background="@drawable/button_style_white"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="S'identifier"
+                android:textAllCaps="false"
+                android:textColor="#4F4F4F"
+                android:textSize="13dp"
+                android:stateListAnimator="@null"/>
 
-                <Button
-                    android:id="@+id/buttonGoToLogin"
-                    android:layout_width="150dp"
-                    android:layout_height="38dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/button_style_white"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:text="S'indentifier"
-                    android:textAllCaps="false"
-                    android:textColor="#4F4F4F"
-                    android:textSize="13dp" />
-
-                <Button
-                    android:id="@+id/buttonGoToRegistration"
-                    android:layout_width="150dp"
-                    android:layout_height="38dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="50dp"
-                    android:background="@drawable/button_style_primary"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="30dp"
-                    android:text="Inscrivez-vous"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="13dp" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/buttonGoToRegistration"
+                android:layout_width="160dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/button_style_primary"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="Inscrivez-vous"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="13dp"
+                android:stateListAnimator="@null"/>
         </LinearLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

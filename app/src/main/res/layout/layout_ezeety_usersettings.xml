@@ -186,6 +186,7 @@
             android:background="@color/colorAccent"
             android:textAllCaps="false"
             android:fontFamily="@font/roboto_regular"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:stateListAnimator="@null"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

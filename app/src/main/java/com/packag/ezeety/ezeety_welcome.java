@@ -32,7 +32,7 @@ public class ezeety_welcome extends AppCompatActivity {
         textViewTermeandCondition.setText(Html.fromHtml(textTermAndCondition));
 
         Intent i = getIntent();
-        textViewUserName.setText(i.getStringExtra("UserName").toString());
+        textViewUserName.setText(i.getStringExtra("UserNameReg").toString());
         buttonNextWelcomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
