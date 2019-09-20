@@ -2,8 +2,10 @@ package com.packag.ezeety.interfaces;
 
 import com.packag.ezeety.Pojos.Lieux;
 import com.packag.ezeety.Pojos.LoginResponse;
+import com.packag.ezeety.Pojos.MessageBodyHeader;
 import com.packag.ezeety.Pojos.User;
 import com.packag.ezeety.Pojos.Users;
+import com.packag.ezeety.Pojos.Villes;
 
 import java.util.Date;
 
@@ -52,4 +54,18 @@ public interface IWsServices {
                       @Field("birthday")Date dateNaissance,
                       @Field("email") String email,
                       @Field("hometown") Integer ville);
+
+
+    @FormUrlEncoded
+    @POST("search/ville")
+    Call<Villes> getVillesAutoCompletion(@Field("ville") String ville);
+
+
+    @FormUrlEncoded
+    @POST("user/check_email")
+    Call<LoginResponse> isEmailAlready(@Field("email") String email);
+
+    @FormUrlEncoded
+    @POST("user/check_email")
+    Call<MessageBodyHeader> isEmailAlready002(@Field("user_email") String email);
 }
