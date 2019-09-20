@@ -80,7 +80,7 @@ public class ezeety_login extends AppCompatActivity {
 
                 if(response.isSuccessful()){
                     LoginResponse result = response.body();
-                    if(result.getMessage().equals("login successful")){
+                    if(result.getMessage().equals("Login Successful")){
                         token = result.getUser().getToken();
                         currentUserId = result.getUser().getId();
                         Intent intent = new Intent(ezeety_login.this, ezeety_home.class);

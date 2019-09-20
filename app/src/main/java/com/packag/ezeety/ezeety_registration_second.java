@@ -1,26 +1,52 @@
 package com.packag.ezeety;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.packag.ezeety.Pojos.Ville;
+import com.packag.ezeety.Pojos.Villes;
+import com.packag.ezeety.Remote.RetrofitFactory;
+import com.packag.ezeety.SettingView.CustomeListAdapter;
+import com.packag.ezeety.interfaces.IWsServices;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ezeety_registration_second extends AppCompatActivity {
 
     Button buttonNext2;
-    EditText editTextNameuserReg, editTextUserNameReg, editTextdateNaissanceReg, editTextVilleReg;
+    EditText editTextNameuserReg, editTextUserNameReg, editTextdateNaissanceReg, editTextVilleReg001;
+    AutoCompleteTextView editTextVilleReg;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +57,17 @@ public class ezeety_registration_second extends AppCompatActivity {
         editTextdateNaissanceReg = findViewById(R.id.edittextDatenaissanceReg);
         editTextVilleReg = findViewById(R.id.editTextVilleSecondReg);
 
+
+
+        editTextVilleReg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ezeety_registration_second.this,
+                        "Clicked item from auto completion list "
+                                + adapterView.getItemAtPosition(i)
+                        , Toast.LENGTH_SHORT).show();
+            }
+        });
 
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -84,6 +121,26 @@ public class ezeety_registration_second extends AppCompatActivity {
 
             }
         });
+        editTextVilleReg.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if(!charSequence.equals("")){
+                    getVille(charSequence.toString());
+                    }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
     private boolean Checkform(String nameFirstNameUser, String userName, String ville, Date dateNaissance) {
@@ -104,6 +161,57 @@ public class ezeety_registration_second extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+
+    private void getVille(String ville){
+        if(CheckConnection()){
+            Retrofit retrofit = RetrofitFactory.getRetrofit();
+            IWsServices iWsServices = retrofit.create(IWsServices.class);
+            Call<Villes> callVilles = iWsServices.getVillesAutoCompletion(ville);
+            callVilles.enqueue(new Callback<Villes>() {
+                @Override
+                public void onResponse(Call<Villes> call, Response<Villes> response) {
+                    if(response.isSuccessful()){
+                        List<String> stringList = new ArrayList<String>();
+                        for(Ville v : response.body().getListVille()){
+                            stringList.add(v.getVille());
+                        }
+
+                        CustomeListAdapter adapterListVille = new CustomeListAdapter(ezeety_registration_second.this,
+                                R.layout.layout_ezeety_simple_dropdown_item, Arrays.asList(stringList.toArray(new String[0])));
+                        editTextVilleReg.setAdapter(adapterListVille);
+                    }
+                    else {
+                        Toast.makeText(ezeety_registration_second.this, "Erreur de chargement de données ", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<Villes> call, Throwable t) {
+                    Toast.makeText(ezeety_registration_second.this, "Erreur de Serveur.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(ezeety_registration_second.this,"No internet connection", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private boolean CheckConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            return true;
+        }
+        else
+            Toast.makeText(ezeety_registration_second.this,"No internet connection", Toast.LENGTH_SHORT).show();
+            return false;
+
     }
 
 }

@@ -11,6 +11,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.packag.ezeety.Pojos.LoginResponse;
+import com.packag.ezeety.Pojos.MessageBodyHeader;
+import com.packag.ezeety.Remote.RetrofitFactory;
+import com.packag.ezeety.interfaces.IWsServices;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class ezeety_registration extends AppCompatActivity {
 
     TextView textViewLogin;
@@ -43,14 +53,36 @@ public class ezeety_registration extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String emailReg = editTextEmailReg.getText().toString(),
+                final String emailReg = editTextEmailReg.getText().toString(),
                         passwordReg = editTextPasswordReg.getText().toString();
-                if(checkFormt(emailReg,passwordReg)){
-                    Intent intentSecond = new Intent(ezeety_registration.this, ezeety_registration_second.class);
-                        intentSecond.putExtra("emailReg", emailReg);
-                        intentSecond.putExtra("passwordReg", passwordReg);
-                    startActivity(intentSecond);
-                } return;
+
+
+                Retrofit retrofit = RetrofitFactory.getRetrofit();
+                IWsServices iWsServices = retrofit.create(IWsServices.class);
+                Call<MessageBodyHeader> callAlreadyEmail = iWsServices.isEmailAlready002(emailReg);
+                callAlreadyEmail.enqueue(new Callback<MessageBodyHeader>() {
+                    @Override
+                    public void onResponse(Call<MessageBodyHeader> call, Response<MessageBodyHeader> response) {
+                        if(response.body().getBodyData().getEmailExists() == 0){
+                            if(checkFormt(emailReg,passwordReg)){
+                                Intent intentSecond = new Intent(ezeety_registration.this, ezeety_registration_second.class);
+                                intentSecond.putExtra("emailReg", emailReg);
+                                intentSecond.putExtra("passwordReg", passwordReg);
+                                startActivity(intentSecond);
+                            } return;
+                        } Toast.makeText(ezeety_registration.this, "Email déjà associé à un compte.", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<MessageBodyHeader> call, Throwable t) {
+
+                    }
+                });
+
+
+
+
 
             }
         });
@@ -66,5 +98,30 @@ public class ezeety_registration extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    private boolean checkEmailAlready(String email){
+        final int[] emailexist = new int[1];
+        Retrofit retrofit = RetrofitFactory.getRetrofit();
+        IWsServices iWsServices = retrofit.create(IWsServices.class);
+        Call<MessageBodyHeader> callAlreadyEmail = iWsServices.isEmailAlready002(email);
+        callAlreadyEmail.enqueue(new Callback<MessageBodyHeader>() {
+    @Override
+    public void onResponse(Call<MessageBodyHeader> call, Response<MessageBodyHeader> response) {
+
+        MessageBodyHeader result = response.body();
+        emailexist[0] = result.getBodyData().getEmailExists();
+
+    }
+
+    @Override
+    public void onFailure(Call<MessageBodyHeader> call, Throwable t) {
+
+    }
+});
+
+        if(emailexist[0] == 1){
+            return true;
+        } return false;
     }
 }
