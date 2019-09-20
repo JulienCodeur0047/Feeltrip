@@ -30,7 +30,7 @@
             android:text="Ajouter une photo de profil"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="25dp"/>
+            android:textSize="26dp"/>
 
         <Button
             android:id="@+id/button_picture_profil_change"
@@ -45,18 +45,17 @@
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:stateListAnimator="@null"
             />
+
         <TextView
-            android:id="@+id/textViewButtonPluTard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="12dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:text="Plus tard"
             android:fontFamily="@font/roboto_bold"
+            android:text="Plus tard"
             android:textAlignment="center"
             android:textColor="#5BA69D"
-            android:textSize="14dp"/>
+            android:textSize="14dp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
