@@ -10,16 +10,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.packag.ezeety.Pojos.Ville;
@@ -130,7 +126,7 @@ public class ezeety_registration_second extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                if(!charSequence.equals("")){
+                if(charSequence.length()  >= 4){
                     getVille(charSequence.toString());
                     }
             }

@@ -28,14 +28,15 @@ public interface IWsServices {
     @POST("auth/login")
     Call<LoginResponse> isValideUser(
             @Field("email") String email,
-            @Field("password") String password
+            @Field("password") String password,
+            @Field("sign_in_with_ezeety") int sign_in_with_ezeety
     );
 
     //@FormUrlEncoded
     @GET("auth/login")
     Call<LoginResponse> getToken();
 
-    @GET("lieu/get_all")
+    @GET("lieux/type")
     Call<Lieux> GetAllLieu();
 
     @GET("auth/login")
@@ -66,6 +67,6 @@ public interface IWsServices {
     Call<LoginResponse> isEmailAlready(@Field("email") String email);
 
     @FormUrlEncoded
-    @POST("user/check_email")
+    @POST("users/verify_email")
     Call<MessageBodyHeader> isEmailAlready002(@Field("user_email") String email);
 }

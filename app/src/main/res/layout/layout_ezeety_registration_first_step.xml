@@ -41,6 +41,7 @@
             android:fontFamily="@font/roboto"
             android:text="Inscription"
             android:textColor="@color/colorAccent"/>
+
         <EditText
             android:id="@+id/editTextEmailRegistration"
             style="@style/Widget.AppCompat.EditText"
@@ -48,15 +49,24 @@
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/ezeety_edittext_style"
             android:ems="10"
+            android:textAllCaps="false"
             android:freezesText="true"
             android:hint="@string/e_mail_ou_nom_d_utilisateur_text_hin"
             android:inputType="textEmailAddress"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="12dp"/>
+        <TextView
+            android:id="@+id/textViewErrorMailAlreadyExist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:textColor="@color/colorgoolered"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="10dp"/>
         <EditText
             android:id="@+id/editTextPasswordRegistration"
             style="@style/Widget.AppCompat.EditText"
@@ -73,6 +83,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="12dp"/>
+
         <CheckBox
             android:id="@+id/checkboxSavePasswordRegistration"
             android:layout_width="match_parent"

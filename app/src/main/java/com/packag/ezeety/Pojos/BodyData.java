@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class BodyData {
 
-    @SerializedName("emailExists;")
+    @SerializedName("emailExists")
     private int emailExists;
 
     public int getEmailExists() {

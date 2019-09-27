@@ -16,6 +16,8 @@
         <activity android:name=".ezeety_welcome" />
         <activity android:name=".ezeety_profil_getstart" />
         <activity android:name=".ezeety_gallerie"/>
+        <activity android:name=".tabbed.ui.tabbedGallerie.tab_galleri_activity"/>
+        <activity android:name=".tabbed.ui.tabbedGallerie.PhotoFolder"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -29,6 +31,23 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
     </application>
 
     <supports-screens
@@ -38,7 +57,8 @@
         android:xlargeScreens="true" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

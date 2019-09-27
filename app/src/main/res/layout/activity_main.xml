@@ -55,7 +55,6 @@
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/ezeety_edittext_style"
             android:ems="10"
             android:freezesText="true"
@@ -64,6 +63,15 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="12dp"/>
+        <TextView
+            android:id="@+id/textViewErrorPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:textColor="@color/colorgoolered"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp">
@@ -105,7 +113,8 @@
             android:gravity="center"
             android:text="OU"
             android:textSize="12sp"/>
-        <Button
+
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/buttonConnexionFacebook"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -113,14 +122,15 @@
             android:layout_marginRight="30dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/button_style_facebook"
-            android:drawableLeft="@mipmap/facebook_48px"
+            android:paddingStart="50dp"
             android:paddingLeft="50dp"
-            android:paddingRight="40dp"
+            android:paddingRight="50dp"
             android:text="@string/se_conncter_sur_facebookText"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            style="@style/FacebookLoginButton"/>
         <Button
             android:id="@+id/buttonConnexionGoogle"
             android:layout_width="match_parent"

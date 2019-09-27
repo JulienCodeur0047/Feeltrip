@@ -31,6 +31,9 @@
     <string name="title_activity_ezeety_tabbed_galleri">ezeety_tabbed_galleri</string>
     <string name="title_tab_gallerie">GALLERIE</string>
     <string name="title_tab_photo">PHOTO</string>
+    <string name="facebook_app_id">2292877137401361</string>
+    <string name="fb_login_protocol_scheme">fb2292877137401361</string>
+
     <string name="appbar_scrolling_view_behavior" />
 
 </resources>
