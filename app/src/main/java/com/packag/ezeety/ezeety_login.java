@@ -23,6 +23,10 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.packag.ezeety.Pojos.LoginResponse;
 import com.packag.ezeety.Pojos.MessageBodyHeader;
 import com.packag.ezeety.Remote.RetrofitFactory;
@@ -41,19 +45,16 @@ import retrofit2.Retrofit;
 public class ezeety_login extends AppCompatActivity {
 
     EditText editTextEmail, editTextPassword;
-    Button buttonConnexion,
-            buttonConnexionGoogle;
-
+    Button buttonConnexion;
+            private SignInButton buttonConnexionGoogle;
     LoginButton buttonConnexionFacebook;
     TextView textViewResetPassword
             ,textViewInscrire,textViewErrorPassword;
-
+    Drawable drawableBackgroundError;
     private String token;
     private int currentUserId;
-
     private CallbackManager callbackManager;
-
-
+    private GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,15 +63,27 @@ public class ezeety_login extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonConnexion = findViewById(R.id.buttonConnexion);
         buttonConnexionFacebook = findViewById(R.id.buttonConnexionFacebook);
-        buttonConnexionGoogle = findViewById(R.id.buttonConnexionGoogle);
+        //buttonConnexionGoogle = findViewById(R.id.buttonConnexionGoogle);
         textViewResetPassword = findViewById(R.id.textViewMotdepaaseOublier);
         textViewInscrire = findViewById(R.id.textViewInscrire);
         textViewErrorPassword = findViewById(R.id.textViewErrorPassword);
-
+        drawableBackgroundError = getResources().getDrawable(R.drawable.ezeety_edittext_style_error);
 
 
         callbackManager = CallbackManager.Factory.create();
 
+
+        buttonConnexionGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //SignInGoogleProgresse();
+            }
+        });
+
+
+        buttonConnexionFacebook.setHeight(50);
+
+        ConfigureGoogleSignIn();
 
         final AccessToken accessToken =AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && accessToken.isExpired();
@@ -84,10 +97,19 @@ public class ezeety_login extends AppCompatActivity {
 
         buttonConnexionFacebook.setReadPermissions(Arrays.asList("email","public_profile"));
 
+        textViewResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentForgotPassword = new Intent(ezeety_login.this, ezeety_forgot_psswrd.class);
+                startActivity(intentForgotPassword);
+            }
+        });
+
         buttonConnexionFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 LoginProcessViafacebook(accessToken);
+
             }
 
             @Override
@@ -109,7 +131,8 @@ public class ezeety_login extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
 
                     textViewErrorPassword.setText("");
-                    editTextPassword.setBackground(Drawable.createFromPath("@drawable/ezeety_edittext_style"));
+                    Drawable drawableBackgroundDefault = getResources().getDrawable(R.drawable.ezeety_edittext_style);
+                    editTextPassword.setBackground(drawableBackgroundDefault);
 
                 return true;
             }
@@ -133,20 +156,13 @@ public class ezeety_login extends AppCompatActivity {
                 startActivity(intentRegistration);
             }
         });
-        textViewResetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         callbackManager.onActivityResult(requestCode,resultCode,data);
         super.onActivityResult(requestCode, resultCode, data);
+
     }
-
-
 
 
     private void LoginProcessViafacebook(AccessToken accessToken){
@@ -222,14 +238,13 @@ public class ezeety_login extends AppCompatActivity {
         request.setParameters(parameters);
         request.executeAsync();
     }
-
-    private void LoginProcessing(String email, String password) {
+    private void LoginProcessing(final String email, final String password) {
 
         Retrofit retrofit = RetrofitFactory.getRetrofit();
         IWsServices iWsServices = retrofit.create(IWsServices.class);
 
-        Call<LoginResponse> call = iWsServices.isValideUser(email,password,1);
-        Call<MessageBodyHeader> callAlreadyEmail = iWsServices.isEmailAlready002(email);
+        //Call<LoginResponse> call = iWsServices.isValideUser(email,password,1);
+        Call<MessageBodyHeader> callAlreadyEmail = iWsServices.isEmailAlready(email);
 
 
         callAlreadyEmail.enqueue(new Callback<MessageBodyHeader>() {
@@ -247,6 +262,8 @@ public class ezeety_login extends AppCompatActivity {
                             }
                         });
                         alerteNoEmail.show();
+                    } else {
+                        secondPartLogin(true,email,password);
                     }
                 }
 
@@ -256,40 +273,8 @@ public class ezeety_login extends AppCompatActivity {
                 }
             });
 
-        call.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
-                if(response.isSuccessful()){
-                    LoginResponse result = response.body();
-                    if(result.getMessage().equals("Login Successful")){
-                        token = result.getUser().getToken();
-                        currentUserId = result.getUser().getId();
-                        Intent intent = new Intent(ezeety_login.this, ezeety_home.class);
-                        intent.putExtra("token", token);
-                        intent.putExtra("currentUserId",currentUserId);
-                        startActivity(intent);
-                    }
-                    else {
 
-                        textViewErrorPassword.setText("Ce mot de passe est incorrect, Réessayer");
-                        editTextPassword.setBackground(Drawable.createFromPath("@drawable/ezeety_edittext_style_error"));
-
-                    }
-
-                }else {
-                    Toast.makeText(ezeety_login.this,"Erreur durant le Chargement, veuillez Ressayer",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-
-                t.printStackTrace();
-                Toast.makeText(ezeety_login.this,"Erreur de connexion Internet",Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
     }
@@ -305,6 +290,59 @@ public class ezeety_login extends AppCompatActivity {
         }
         return true;
     }
+    private void secondPartLogin(boolean pcontinu, String email, String password){
+        Retrofit retrofit = RetrofitFactory.getRetrofit();
+        IWsServices iWsServices = retrofit.create(IWsServices.class);
 
+        Call<LoginResponse> call = iWsServices.isValideUser(email,password,1);
+        if(pcontinu){
+            call.enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                    if(response.isSuccessful()){
+                        LoginResponse result = response.body();
+                        if(result.getMessage().equals("Login Successful")){
+                            token = result.getUser().getToken();
+                            currentUserId = result.getUser().getId();
+                            Intent intent = new Intent(ezeety_login.this, ezeety_home.class);
+                            intent.putExtra("token", token);
+                            intent.putExtra("currentUserId",currentUserId);
+                            startActivity(intent);
+                        }
+                        else {
+
+                            textViewErrorPassword.setText("Ce mot de passe est incorrect, Réessayer");
+
+                            editTextPassword.setBackground(drawableBackgroundError);
+
+                        }
+
+                    }else {
+                        Toast.makeText(ezeety_login.this,"Erreur durant le Chargement, veuillez Ressayer",Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                    t.printStackTrace();
+                    Toast.makeText(ezeety_login.this,"Erreur de connexion Internet",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void ConfigureGoogleSignIn(){
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
 
 }

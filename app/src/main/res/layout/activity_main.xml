@@ -121,16 +121,17 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/button_style_facebook"
             android:paddingStart="50dp"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
+            android:paddingBottom="17dp"
+            android:paddingTop="17dp"
             android:text="@string/se_conncter_sur_facebookText"
             android:textAlignment="center"
             android:textAllCaps="false"
+            android:background="@drawable/button_style_facebook"
             android:textColor="@android:color/background_light"
-            android:textSize="12sp"
-            style="@style/FacebookLoginButton"/>
+            android:textSize="12sp"/>
         <Button
             android:id="@+id/buttonConnexionGoogle"
             android:layout_width="match_parent"

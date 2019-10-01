@@ -6,9 +6,9 @@
     android:thickness="0dp">
     <stroke android:width="2dp"
 
-        android:color="@android:color/holo_blue_dark" />
+        android:color="#1877F2" />
     <solid
-        android:color="@android:color/holo_blue_dark"/>
+        android:color="#1877F2"/>
     <corners android:radius="6dp" />
 
 </shape>

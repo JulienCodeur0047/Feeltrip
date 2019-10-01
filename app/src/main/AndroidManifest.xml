@@ -18,6 +18,7 @@
         <activity android:name=".ezeety_gallerie"/>
         <activity android:name=".tabbed.ui.tabbedGallerie.tab_galleri_activity"/>
         <activity android:name=".tabbed.ui.tabbedGallerie.PhotoFolder"/>
+        <activity android:name=".ezeety_forgot_psswrd"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">

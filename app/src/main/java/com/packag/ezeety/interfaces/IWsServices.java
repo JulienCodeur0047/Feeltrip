@@ -63,8 +63,8 @@ public interface IWsServices {
 
 
     @FormUrlEncoded
-    @POST("user/check_email")
-    Call<LoginResponse> isEmailAlready(@Field("email") String email);
+    @POST("users/check_email")
+    Call<MessageBodyHeader> isEmailAlready(@Field("user_email") String email);
 
     @FormUrlEncoded
     @POST("users/verify_email")

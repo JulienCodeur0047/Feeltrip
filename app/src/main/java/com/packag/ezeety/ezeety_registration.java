@@ -80,7 +80,7 @@ public class ezeety_registration extends AppCompatActivity {
 
                 Retrofit retrofit = RetrofitFactory.getRetrofit();
                 IWsServices iWsServices = retrofit.create(IWsServices.class);
-                Call<MessageBodyHeader> callAlreadyEmail = iWsServices.isEmailAlready002(emailReg);
+                Call<MessageBodyHeader> callAlreadyEmail = iWsServices.isEmailAlready(emailReg);
                 callAlreadyEmail.enqueue(new Callback<MessageBodyHeader>() {
                     @Override
                     public void onResponse(Call<MessageBodyHeader> call, Response<MessageBodyHeader> response) {
@@ -126,7 +126,7 @@ public class ezeety_registration extends AppCompatActivity {
         final int[] emailexist = new int[1];
         Retrofit retrofit = RetrofitFactory.getRetrofit();
         IWsServices iWsServices = retrofit.create(IWsServices.class);
-        Call<MessageBodyHeader> callAlreadyEmail = iWsServices.isEmailAlready002(email);
+        Call<MessageBodyHeader> callAlreadyEmail = iWsServices.isEmailAlready(email);
         callAlreadyEmail.enqueue(new Callback<MessageBodyHeader>() {
     @Override
     public void onResponse(Call<MessageBodyHeader> call, Response<MessageBodyHeader> response) {
