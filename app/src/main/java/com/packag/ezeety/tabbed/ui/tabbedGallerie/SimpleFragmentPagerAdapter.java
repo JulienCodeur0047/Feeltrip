@@ -4,11 +4,11 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.widget.Switch;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.packag.ezeety.R;
 
-public class SimpleFragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
+public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
 

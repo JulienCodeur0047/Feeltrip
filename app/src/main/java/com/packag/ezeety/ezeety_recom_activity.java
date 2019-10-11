@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
+
 public class ezeety_recom_activity extends AppCompatActivity
 
 {

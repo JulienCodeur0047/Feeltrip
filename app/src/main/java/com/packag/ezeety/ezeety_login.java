@@ -23,8 +23,6 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.packag.ezeety.Pojos.LoginResponse;
@@ -54,7 +52,7 @@ public class ezeety_login extends AppCompatActivity {
     private String token;
     private int currentUserId;
     private CallbackManager callbackManager;
-    private GoogleSignInClient mGoogleSignInClient;
+    //private GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,15 +69,6 @@ public class ezeety_login extends AppCompatActivity {
 
 
         callbackManager = CallbackManager.Factory.create();
-
-
-        buttonConnexionGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //SignInGoogleProgresse();
-            }
-        });
-
 
         buttonConnexionFacebook.setHeight(50);
 
@@ -163,8 +152,6 @@ public class ezeety_login extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
     }
-
-
     private void LoginProcessViafacebook(AccessToken accessToken){
         GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
             @Override
@@ -333,7 +320,6 @@ public class ezeety_login extends AppCompatActivity {
             });
         }
     }
-
     private void ConfigureGoogleSignIn(){
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -342,7 +328,7 @@ public class ezeety_login extends AppCompatActivity {
                 .build();
 
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        //mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
 }

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.packag.ezeety.Pojos.ModelImage;
@@ -23,7 +24,7 @@ import com.packag.ezeety.SettingView.AdapterPhotoFolder;
 
 import java.util.ArrayList;
 
-    public class tab_galleri_activity extends AppCompatActivity {
+    public class tab_galleri_activity extends AppCompatActivity implements TabHost.OnTabChangeListener {
 
 
 
@@ -31,12 +32,18 @@ import java.util.ArrayList;
 
     boolean booleanFolder;
     GridView gridViewFolder;
+    TabHost tabhost;
     private static final int REQUEST_PERMISSIONS = 100;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_ezeety_tab_galleri);
-        gridViewFolder = (GridView) findViewById(R.id.gridview_folder);
+        gridViewFolder = (GridView) findViewById(R.id.gridview_image);
+        tabhost = findViewById(R.id.tabHostgalleri);
+        tabhost.setOnTabChangedListener(this);
+        tabhost.setup();
+        addTabs("Galleri","GALLERI",R.id.tabGalleri);
+        addTabs("Photo","PHOTO",R.id.tabPhoto);
 
 
         gridViewFolder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -151,4 +158,16 @@ import java.util.ArrayList;
             }
         }
     }
-}
+
+        @Override
+        public void onTabChanged(String s) {
+
+        }
+
+        private void addTabs(String tag, String title, int Content){
+            TabHost.TabSpec tabSpec = tabhost.newTabSpec(tag);
+            tabSpec.setIndicator(title,null);
+            tabSpec.setContent(Content);
+            tabhost.addTab(tabSpec);
+        }
+    }

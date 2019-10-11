@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,13 +19,13 @@
 
             <ImageView
                 android:id="@+id/imagebuttonbackChangePsswrd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/arrow" />
+                app:srcCompat="@drawable/arrow" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -36,7 +37,7 @@
                 android:paddingEnd="10dp"
                 android:paddingTop="10dp"
                 android:text="Changer mot de passe"
-                android:textSize="18dp"
+                android:textSize="14dp"
                 android:fontFamily="@font/roboto_regular"
                 />
             <TextView
@@ -52,7 +53,7 @@
                 android:paddingEnd="10dp"
                 android:paddingTop="10dp"
                 android:text="OK"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:fontFamily="@font/roboto_bold"/>
         </LinearLayout>
 
@@ -62,7 +63,26 @@
             android:background="@drawable/grayscale_background">
 
         </LinearLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modification"
+            android:textSize="24dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mot de passe"
+            android:textSize="24dp"
+            android:textColor="#000000"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            />
         <EditText
             android:id="@+id/edittextnewPsswrd"
             style="@style/Widget.AppCompat.EditText"
@@ -82,7 +102,7 @@
             android:textSize="12dp"/>
 
         <EditText
-            android:id="@+id/edittextConfirmPsswrd"
+            android:id="@+id/edittextConfirmNewPsswrd"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -104,7 +124,7 @@
             android:text="Recuperer le mot de passe"
             android:gravity="center"
             android:fontFamily="@font/roboto_regular"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:layout_marginTop="20dp"/>
     </LinearLayout>
 

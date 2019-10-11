@@ -18,7 +18,7 @@ public class PhotoFolder extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_ezeety_tab_galleri);
-        gridView = (GridView)findViewById(R.id.gridview_folder);
+        gridView = (GridView)findViewById(R.id.gridview_image);
         int_position = getIntent().getIntExtra("value", 0);
         adapter = new GridViewAdapter(this,tab_galleri_activity.allImages,int_position);
         gridView.setAdapter(adapter);

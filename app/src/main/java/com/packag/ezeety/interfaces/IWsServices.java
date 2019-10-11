@@ -1,15 +1,20 @@
 package com.packag.ezeety.interfaces;
 
+import com.packag.ezeety.Pojos.GooglePlaces;
 import com.packag.ezeety.Pojos.Lieux;
 import com.packag.ezeety.Pojos.LoginResponse;
 import com.packag.ezeety.Pojos.MessageBodyHeader;
 import com.packag.ezeety.Pojos.User;
+import com.packag.ezeety.Pojos.UserPasswordReset;
+import com.packag.ezeety.Pojos.UserSignUpEzeety;
+import com.packag.ezeety.Pojos.UserSocialNetwork;
 import com.packag.ezeety.Pojos.Users;
 import com.packag.ezeety.Pojos.Villes;
 
 import java.util.Date;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -18,6 +23,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface IWsServices {
 
@@ -56,6 +62,12 @@ public interface IWsServices {
                       @Field("email") String email,
                       @Field("hometown") Integer ville);
 
+    @FormUrlEncoded
+    @POST("users/sign_up_2_social_network")
+    Call<UserSocialNetwork> RegisterBySosialNetwork(@Field("email") String email,
+                                                    @Field("nom_prenom") String name_firstName,
+                                                    @Field("profile_picture") String profile_picture);
+
 
     @FormUrlEncoded
     @POST("search/ville")
@@ -68,5 +80,41 @@ public interface IWsServices {
 
     @FormUrlEncoded
     @POST("users/verify_email")
-    Call<MessageBodyHeader> isEmailAlready002(@Field("user_email") String email);
+    Call<MessageBodyHeader> isEmailAlreadyForgotpasswrd(@Field("user_email") String email);
+
+
+    @GET("https://maps.googleapis.com/maps/api/place/autocomplete/json?types=(cities)&language=fr&key=AIzaSyAd0PUK7nWw1L-mp_KU2al5aepqzXPrwCA")
+    Call<GooglePlaces> getPlacesAutocompletion(@Query("input") String cityName);
+
+    @FormUrlEncoded
+    @POST("users/reset_password")
+    Call<UserPasswordReset> resetPassword(@Field("user_id") int user_id,
+                                          @Field("password") String password,
+                                          @Field("reset_code") String reset_code);
+
+    @FormUrlEncoded
+    @POST("users/reset_password")
+    Call<MessageBodyHeader> resetPassword2(@Field("user_id") int user_id,
+                                          @Field("password") String password,
+                                          @Field("reset_code") String reset_code);
+
+    @FormUrlEncoded
+    @POST("users/check_username")
+    Call<MessageBodyHeader> checkUserName(@Field("username") String username);
+
+
+    @Multipart
+    //@Headers("Content-Type: multipart/form-data")
+    @POST("users/sign_up_2_ezeety")
+    Call<UserSignUpEzeety> singInUptoEzeeety(@Part("username") RequestBody username,
+                                             @Part("nom_prenom") RequestBody nom_prenom,
+                                             @Part("email") RequestBody email,
+                                             @Part("password") RequestBody password,
+                                             @Part("date_naissance") RequestBody date_naissance,
+                                             @Part("google_place_id") RequestBody place_id,
+                                             @Part("ville") RequestBody ville,
+                                             @Part("pays") RequestBody pays,
+                                             @Part MultipartBody.Part file
+                                             );
+
 }

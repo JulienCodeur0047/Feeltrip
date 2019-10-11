@@ -145,7 +145,7 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
                     android:contentDescription="@string/imageviewgrid_tex"
-                    android:src="@mipmap/grid_02_35px_1" />
+                    app:srcCompat="@mipmap/grid_02_35px_1" />
 
                 <ImageView
                     android:id="@+id/listlisStyle"
@@ -153,7 +153,7 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
                     android:contentDescription="@string/imageviewlist_text"
-                    android:src="@mipmap/list_35px" />
+                    app:srcCompat="@mipmap/list_35px" />
             </LinearLayout>
 
             <TextView

@@ -1,8 +1,11 @@
 package com.packag.ezeety;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -18,18 +21,20 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.packag.ezeety.Pojos.BodyData;
+import com.packag.ezeety.Pojos.GooglePlaces;
+import com.packag.ezeety.Pojos.MessageBodyHeader;
+import com.packag.ezeety.Pojos.Place;
 import com.packag.ezeety.Pojos.Ville;
 import com.packag.ezeety.Pojos.Villes;
 import com.packag.ezeety.Remote.RetrofitFactory;
 import com.packag.ezeety.SettingView.CustomeListAdapter;
 import com.packag.ezeety.interfaces.IWsServices;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -43,6 +48,8 @@ public class ezeety_registration_second extends AppCompatActivity {
     Button buttonNext2;
     EditText editTextNameuserReg, editTextUserNameReg, editTextdateNaissanceReg, editTextVilleReg001;
     AutoCompleteTextView editTextVilleReg;
+    Drawable drawableErrorEditText;
+    public static String RegPays, RegGooglePlaceId, RegDateNaissance, RegVille, RegUsername, RegNomPrenom;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,19 +59,16 @@ public class ezeety_registration_second extends AppCompatActivity {
         editTextUserNameReg = findViewById(R.id.editTextUserNamesecondeReg);
         editTextdateNaissanceReg = findViewById(R.id.edittextDatenaissanceReg);
         editTextVilleReg = findViewById(R.id.editTextVilleSecondReg);
-
-
-
+        drawableErrorEditText = getResources().getDrawable(R.drawable.ezeety_edittext_style_error);
         editTextVilleReg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ezeety_registration_second.this,
+                /*Toast.makeText(ezeety_registration_second.this,
                         "Clicked item from auto completion list "
                                 + adapterView.getItemAtPosition(i)
-                        , Toast.LENGTH_SHORT).show();
+                        , Toast.LENGTH_SHORT).show();*/
             }
         });
-
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -82,7 +86,6 @@ public class ezeety_registration_second extends AppCompatActivity {
             }
 
         };
-
         editTextdateNaissanceReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,27 +94,18 @@ public class ezeety_registration_second extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
         buttonNext2.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String NameFirstNameUser = editTextNameuserReg.getText().toString(),
-                        UserName = editTextUserNameReg.getText().toString(),
-                        Ville = editTextVilleReg.getText().toString();
-                Date DateNaissance = null;
-                try {
-                    DateNaissance = dateFormat.parse(editTextdateNaissanceReg.getText().toString());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if(Checkform(NameFirstNameUser,UserName, Ville, DateNaissance)){
+
+                 RegNomPrenom = editTextNameuserReg.getText().toString();
+                        RegUsername = editTextUserNameReg.getText().toString();
+                        RegVille = editTextVilleReg.getText().toString();
+                RegDateNaissance = editTextdateNaissanceReg.getText().toString();
+                checkUsername(RegUsername);
+                if(Checkform(RegNomPrenom,RegUsername, RegVille, RegDateNaissance)){
                     Intent intentWelcom = new Intent(ezeety_registration_second.this, ezeety_welcome.class);
-                    intentWelcom.putExtra("UserNameFirstNameReg",NameFirstNameUser);
-                    intentWelcom.putExtra("UserNameReg", UserName);
-                    intentWelcom.putExtra("VilleReg", Ville);
-                    intentWelcom.putExtra("DateNaissance", DateNaissance);
                     startActivity(intentWelcom);
                 } return;
 
@@ -126,9 +120,9 @@ public class ezeety_registration_second extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                if(charSequence.length()  >= 4){
-                    getVille(charSequence.toString());
-                    }
+                if (charSequence.length() >= 4){
+                    getPlacesfromGoogle(charSequence.toString());
+                }
             }
 
             @Override
@@ -139,7 +133,7 @@ public class ezeety_registration_second extends AppCompatActivity {
 
     }
 
-    private boolean Checkform(String nameFirstNameUser, String userName, String ville, Date dateNaissance) {
+    private boolean Checkform(String nameFirstNameUser, String userName, String ville, String dateNaissance) {
         if(nameFirstNameUser == null || nameFirstNameUser.trim().length() == 0){
             Toast.makeText(ezeety_registration_second.this, "veuillez preciser votre Nom et prenom", Toast.LENGTH_SHORT).show();
             return false;
@@ -159,6 +153,40 @@ public class ezeety_registration_second extends AppCompatActivity {
         return true;
     }
 
+
+    private void getPlacesfromGoogle(String City){
+        if(CheckConnection()){
+            Retrofit retrofit = RetrofitFactory.getRetrofit();
+            IWsServices iWsServices = retrofit.create(IWsServices.class);
+            Call<GooglePlaces> callPlaces = iWsServices.getPlacesAutocompletion(City);
+            callPlaces.enqueue(new Callback<GooglePlaces>() {
+                @Override
+                public void onResponse(Call<GooglePlaces> call, Response<GooglePlaces> response) {
+                    if(response.isSuccessful()) {
+                        List<String> stringList = new ArrayList<String>();
+                        for (Place v : response.body().getListPlace()) {
+                            stringList.add(v.getDescription());
+                            RegVille = v.getDescription();
+                            RegPays = v.getStructuredF().getPays();
+                            RegGooglePlaceId = v.getPlace_id();
+
+                        }
+                        CustomeListAdapter adapterListVille = new CustomeListAdapter(ezeety_registration_second.this,
+                                R.layout.layout_ezeety_simple_dropdown_item, Arrays.asList(stringList.toArray(new String[0])));
+                        editTextVilleReg.setAdapter(adapterListVille);
+                    }
+                    else {
+                        Toast.makeText(ezeety_registration_second.this, "Erreur de chargement de données ", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GooglePlaces> call, Throwable t) {
+                    Toast.makeText(ezeety_registration_second.this, "Erreur de Serveur.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
 
     private void getVille(String ville){
         if(CheckConnection()){
@@ -208,6 +236,42 @@ public class ezeety_registration_second extends AppCompatActivity {
             Toast.makeText(ezeety_registration_second.this,"No internet connection", Toast.LENGTH_SHORT).show();
             return false;
 
+    }
+
+    private void checkUsername(String usename){
+        Retrofit retrofit = RetrofitFactory.getRetrofit();
+        IWsServices iWsServices = retrofit.create(IWsServices.class);
+        Call<MessageBodyHeader> messageBodyHeaderCall = iWsServices.checkUserName(usename);
+        messageBodyHeaderCall.enqueue(new Callback<MessageBodyHeader>() {
+            @Override
+            public void onResponse(Call<MessageBodyHeader> call, Response<MessageBodyHeader> response) {
+                if (response.isSuccessful()){
+                    MessageBodyHeader messageBodyHeader = response.body();
+                    BodyData bodyData = messageBodyHeader.getBodyData();
+                    int usernameExist = bodyData.getUsernameExists();
+                    if (usernameExist==1){
+                        AlertDialog.Builder alertDialogusernamExist = new AlertDialog.Builder(ezeety_registration_second.this);
+                        alertDialogusernamExist.setTitle("Erreur Nom d'utilisateur");
+                        alertDialogusernamExist.setMessage("Le nom d'utilisateur que vous allez utiliser est déjà appartient a un utilisateur.");
+                        alertDialogusernamExist.setPositiveButton("Réessayer", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                return;
+                            }
+                        });
+                        alertDialogusernamExist.show();
+                        editTextUserNameReg.setBackground(drawableErrorEditText);
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MessageBodyHeader> call, Throwable t) {
+                Toast.makeText(ezeety_registration_second.this,"Server Error or down", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

@@ -12,7 +12,52 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+                <TextView
+                    android:id="@+id/textViewButtonBackProfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Annuler"
+                    android:textSize="14dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
 
+                <TextView
+                    android:id="@+id/txtViewNextAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Suivant"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/grayscale_background">
+
+
+        </LinearLayout>
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image_getstart"
             android:layout_width="120dp"
@@ -42,7 +87,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/button_style_primary"
-            android:text="Ajouter une photo"
+            android:text="Photo"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
@@ -51,7 +96,7 @@
         <TextView
             android:id="@+id/textViewButtonPluTard"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/roboto_bold"

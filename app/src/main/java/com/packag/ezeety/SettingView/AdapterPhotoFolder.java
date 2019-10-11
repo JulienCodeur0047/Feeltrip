@@ -64,9 +64,9 @@ public class AdapterPhotoFolder extends ArrayAdapter<ModelImage> {
 
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_ezeety_photo_folder, parent, false);
-            viewHolder.tv_foldern = (TextView) convertView.findViewById(R.id.tv_folder);
+            /*viewHolder.tv_foldern = (TextView) convertView.findViewById(R.id.tv_folder);
             viewHolder.tv_foldersize = (TextView) convertView.findViewById(R.id.tv_folder2);
-            viewHolder.iv_image = (ImageView) convertView.findViewById(R.id.iv_image);
+            viewHolder.iv_image = (ImageView) convertView.findViewById(R.id.iv_image);*/
 
 
             convertView.setTag(viewHolder);
