@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
@@ -24,35 +24,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left">
-                <TextView
-                    android:id="@+id/textViewButtonBackProfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Annuler"
-                    android:textSize="14dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right">
 
-                <TextView
-                    android:id="@+id/txtViewNextAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Suivant"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="14dp"/>
+                <ImageView
+                    android:id="@+id/imageViewButtonBackProfil"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/arrow"/>
             </LinearLayout>
+
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="3dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/grayscale_background">
 
@@ -78,31 +64,33 @@
             android:textColor="@android:color/black"
             android:textSize="26dp"/>
 
+        <TextView
+            android:id="@+id/textViewprofilPicchange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Modifier la photo"
+            android:textAlignment="center"
+            android:textColor="#5BA69D"
+            android:textSize="14dp" />
+
         <Button
-            android:id="@+id/button_picture_profil_change"
+            android:id="@+id/buttonNext"
+
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/button_style_primary"
-            android:text="Photo"
+            android:text="Suivant"
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             />
 
-        <TextView
-            android:id="@+id/textViewButtonPluTard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Plus tard"
-            android:textAlignment="center"
-            android:textColor="#5BA69D"
-            android:textSize="14dp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

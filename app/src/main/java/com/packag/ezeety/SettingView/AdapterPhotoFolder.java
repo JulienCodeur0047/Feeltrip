@@ -65,17 +65,14 @@ public class AdapterPhotoFolder extends ArrayAdapter<ModelImage> {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_ezeety_photo_folder, parent, false);
             /*viewHolder.tv_foldern = (TextView) convertView.findViewById(R.id.tv_folder);
-            viewHolder.tv_foldersize = (TextView) convertView.findViewById(R.id.tv_folder2);
-            viewHolder.iv_image = (ImageView) convertView.findViewById(R.id.iv_image);*/
+            viewHolder.tv_foldersize = (TextView) convertView.findViewById(R.id.tv_folder2);*/
+            viewHolder.iv_image = (ImageView) convertView.findViewById(R.id.imageViewItem);
 
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        viewHolder.tv_foldern.setText(allMenu.get(position).getFolderName());
-        viewHolder.tv_foldersize.setText(allMenu.get(position).getAllimagePath().size()+"");
 
 
 

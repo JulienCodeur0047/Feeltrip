@@ -2,6 +2,8 @@ package com.packag.ezeety.Pojos;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.File;
+
 public class UserSignUpEzeety {
 
     @SerializedName("message")
@@ -25,8 +27,19 @@ public class UserSignUpEzeety {
     private String pays;
     @SerializedName("email")
     private String email;
-    @SerializedName("profile_picture")
+    @SerializedName("profile_pictureString")
     private String profil_picture;
+
+    public File getProfile_pictureFile() {
+        return profile_pictureFile;
+    }
+
+    public void setProfile_pictureFile(File profile_pictureFile) {
+        this.profile_pictureFile = profile_pictureFile;
+    }
+
+    @SerializedName("profile_picture")
+    private File profile_pictureFile;
 
     public String getProfil_picture() {
         return profil_picture;

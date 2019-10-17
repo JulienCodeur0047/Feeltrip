@@ -31,7 +31,6 @@ import com.packag.ezeety.interfaces.IWsServices;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.Arrays;
 
 import retrofit2.Call;
@@ -75,6 +74,7 @@ public class ezeety_registration extends AppCompatActivity {
             }
         });
         callbackManager = CallbackManager.Factory.create();
+        buttonRegByfacebook.setReadPermissions(Arrays.asList("email","public_profile"));
 
         buttonRegByfacebook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +107,7 @@ public class ezeety_registration extends AppCompatActivity {
 
                 RegEmail = emailReg;
                 RegPassword = passwordReg;
+
 
                 if(!(emailReg.contains("@") || emailReg.contains("."))){
                     AlertDialog.Builder messageAlerte = new AlertDialog.Builder(ezeety_registration.this);
@@ -150,13 +151,19 @@ public class ezeety_registration extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<MessageBodyHeader> call, Throwable t) {
-                        Toast.makeText(ezeety_registration.this, "No internet connection or Server down", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ezeety_registration.this, "Erreur", Toast.LENGTH_SHORT).show();
 
                     }
                 });
 
             }
         });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callbackManager.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
+
     }
     private void RegisterProcessViafacebook(AccessToken accessToken){
         GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -173,7 +180,7 @@ public class ezeety_registration extends AppCompatActivity {
                     Retrofit retrofit = RetrofitFactory.getRetrofit();
                     IWsServices iWsServices = retrofit.create(IWsServices.class);
 
-                    if(email==null||
+                    /*if(email==null||
                             email==""||
                             !email.contains("@")||
                             !email.contains(".")||
@@ -190,7 +197,7 @@ public class ezeety_registration extends AppCompatActivity {
                         });
                         alerteNoEmail.show();
 
-                    }else {
+                    }else {*/
                         Call<UserSocialNetwork> calluserSocialNetwork = iWsServices.RegisterBySosialNetwork(email,
                                 first_nameUserFb+"_"+last_nameUserFb,
                                 image_url);
@@ -220,7 +227,7 @@ public class ezeety_registration extends AppCompatActivity {
 
                             }
                         });
-                    }
+                    //}
 
 
 

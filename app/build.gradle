@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    dexOptions {
+        javaMaxHeapSize "5g"
+        jumboMode = true
+    }
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.packag.ezeety"
@@ -53,8 +57,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.0.1'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
-    //noinspection GradleDependency
-    implementation 'com.github.bumptech.glide:glide:3.6.1'
-    //implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 }

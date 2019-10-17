@@ -3,27 +3,23 @@ package com.packag.ezeety;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.packag.ezeety.Pojos.User;
 import com.packag.ezeety.Pojos.UserSignUpEzeety;
 import com.packag.ezeety.Remote.RetrofitFactory;
 import com.packag.ezeety.interfaces.IWsServices;
 import com.packag.ezeety.tabbed.ui.tabbedGallerie.ezeety_gallery_activity;
 
 import java.io.File;
-import java.util.Date;
 
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,22 +28,24 @@ import retrofit2.Response;
 public class ezeety_profil_getstart extends AppCompatActivity {
 
     ImageView imageViewProfilePicture;
-    TextView textViewbuttonPlusTard, textViewbuttonNexAll, textViewbuttonBack;
-    Button buttonChangeProfilPics;
+    TextView buttonNext, textViewChangeProfilPics;
+    ImageView imageViewbuttonBack;
+    Drawable picture_profil_default;
     ezeety_registration ezeety_registration = new ezeety_registration();
     ezeety_registration_second ezeety_registration_second = new ezeety_registration_second();
     ezeety_gallery_activity ezeety_gallery_activity = new ezeety_gallery_activity();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_ezeety_profil_getstart);
-        textViewbuttonPlusTard = (TextView) findViewById(R.id.textViewButtonPluTard);
-        buttonChangeProfilPics = (Button) findViewById(R.id.button_picture_profil_change);
+        buttonNext = (TextView) findViewById(R.id.buttonNext);
+        textViewChangeProfilPics = (TextView) findViewById(R.id.textViewprofilPicchange);
         imageViewProfilePicture = findViewById(R.id.profile_image_getstart);
-        textViewbuttonNexAll = findViewById(R.id.txtViewNextAll);
-        textViewbuttonBack = findViewById(R.id.textViewButtonBackProfil);
+        imageViewbuttonBack = findViewById(R.id.imageViewButtonBackProfil);
+        picture_profil_default = getResources().getDrawable(R.drawable.photo);
 
-        textViewbuttonBack.setOnClickListener(new View.OnClickListener() {
+        imageViewbuttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -55,101 +53,46 @@ public class ezeety_profil_getstart extends AppCompatActivity {
         });
 
         if (ezeety_gallery_activity != null){
-            String imageProfileUri = com.packag.ezeety.tabbed.ui.tabbedGallerie.ezeety_gallery_activity.imageUri;
+            String imageProfileUri = ezeety_gallery_activity.imageUri;
             if (imageProfileUri !=null){
                 imageViewProfilePicture.setImageURI(Uri.parse(imageProfileUri));
+            } else {
+                imageViewProfilePicture.setImageDrawable(picture_profil_default);
             }
         }
 
-        buttonChangeProfilPics.setOnClickListener(new View.OnClickListener() {
+        textViewChangeProfilPics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ezeety_gallery_activity.imageFilePick = null;
+                ezeety_gallery_activity.imageUri = null;
                 Intent intentGallerie = new Intent(ezeety_profil_getstart.this, ezeety_gallery_activity.class);
                 startActivity(intentGallerie);
             }
         });
 
-        String
-                RegEmail = ezeety_registration.RegEmail,
-                RegPassword = ezeety_registration.RegPassword,
-                RegUsername = ezeety_registration_second.RegUsername,
-                RegNomPrenom = ezeety_registration_second.RegNomPrenom,
-                RegDateNaissance = ezeety_registration_second.RegDateNaissance,
-                RegVille = ezeety_registration_second.RegVille,
-                RegPays = ezeety_registration_second.RegPays,
-                RegPlaceId = ezeety_registration_second.RegGooglePlaceId;
-
-        RequestBody requestBodyEmail = RequestBody.create(MediaType.parse("multipart/form-data"), RegEmail);
-        RequestBody requestBodyPassword = RequestBody.create(MediaType.parse("multipart/form-data"), RegPassword);
-        RequestBody requestBodyUsername = RequestBody.create(MediaType.parse("multipart/form-data"), RegUsername);
-        RequestBody requestBodyNomPrenom = RequestBody.create(MediaType.parse("multipart/form-data"), RegNomPrenom);
-        RequestBody requestBodyDateNaissance = RequestBody.create(MediaType.parse("multipart/form-data"), RegDateNaissance);
-        RequestBody requestBodyVille = RequestBody.create(MediaType.parse("multipart/form-data"), RegVille);
-        RequestBody requestBodyPays = RequestBody.create(MediaType.parse("multipart/form-data"), RegPays);
-        RequestBody requestBodyPlaceId = RequestBody.create(MediaType.parse("multipart/form-data"), RegPlaceId);
-
-        textViewbuttonNexAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Registration(requestBodyUsername,
-                        requestBodyNomPrenom,
-                        requestBodyEmail,
-                        requestBodyPassword,
-                        requestBodyDateNaissance,
-                        requestBodyPlaceId,
-                        requestBodyVille,
-                        requestBodyPays,null);
-            }
-        });
-
-        textViewbuttonPlusTard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Registration(requestBodyUsername,
-                        requestBodyNomPrenom,
-                        requestBodyEmail,
-                        requestBodyPassword,
-                        requestBodyDateNaissance,
-                        requestBodyPlaceId,
-                        requestBodyVille,
-                        requestBodyPays,null);
-            }
-        });
-
-
-    }
-
-    private void singUpProcessing(MultipartBody.Part pFile, String pNameFirstName,
-                                  String pPassword, Date pBirthday,
-                                  String pEmail, int pHometowne){
-
-        String token = getToken();
-        IWsServices iWsServices = RetrofitFactory.createService(IWsServices.class,"barea " + token);
-        Call<User> callSingUp = iWsServices.signUp(pFile,pNameFirstName,pPassword,pBirthday,pEmail,pHometowne);
-        callSingUp.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-
-                if(response.isSuccessful()){
-                    Intent intenthome = new Intent(ezeety_profil_getstart.this, ezeety_home.class);
-                    startActivity(intenthome);
-                }else{
-                    Toast.makeText(ezeety_profil_getstart.this,"Erreur durant l'enregistrement de donnees",Toast.LENGTH_SHORT).show();
+        if(ezeety_registration_second != null || ezeety_registration != null ){
+            buttonNext.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Registration(getrequestbody(ezeety_registration_second.RegUsername),
+                            getrequestbody(ezeety_registration_second.RegNomPrenom),
+                            getrequestbody(ezeety_registration.RegEmail),
+                            getrequestbody(ezeety_registration.RegPassword),
+                            getrequestbody(ezeety_registration_second.RegDateNaissance),
+                            getrequestbody(ezeety_registration_second.RegGooglePlaceId),
+                            getrequestbody(ezeety_registration_second.RegVille),
+                            getrequestbody(ezeety_registration_second.RegPays),
+                            ezeety_gallery_activity.imageFilePick);
                 }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-                Toast.makeText(ezeety_profil_getstart.this,"Erreur de serveur",Toast.LENGTH_SHORT).show();
-            }
-        });
+            });
+        }
     }
+
+
 
     private String getToken() {
-        Intent i = getIntent();
-        return i.getStringExtra("token");
+      return null;
     }
 
     private void Registration(RequestBody username,
@@ -170,18 +113,12 @@ public class ezeety_profil_getstart extends AppCompatActivity {
                 date_naissance,
                 google_place_id,
                 ville,
-                pays,null);
+                pays,
+                profile_picture);
         userSignUpEzeetyCall.enqueue(new Callback<UserSignUpEzeety>() {
             @Override
             public void onResponse(Call<UserSignUpEzeety> call, Response<UserSignUpEzeety> response) {
-                /*UserSignUpEzeety userSignUpEzeety = response.body();
-                String message = userSignUpEzeety.getMessage();
-                String status = userSignUpEzeety.getStatus();*/
-
                 if (response.isSuccessful()){
-                    /*if (message.equals("User Signed Up Successfully")){
-
-                     */
                         AlertDialog.Builder alertDialogusernamExist = new AlertDialog.Builder(ezeety_profil_getstart.this);
                         alertDialogusernamExist.setTitle("Information");
                         alertDialogusernamExist.setMessage("vous etes inscrit sur Ezeety, veuillez vous indentifier.");
@@ -194,7 +131,6 @@ public class ezeety_profil_getstart extends AppCompatActivity {
                             }
                         });
                         alertDialogusernamExist.show();
-                    //}
                 }
             }
 
@@ -204,5 +140,9 @@ public class ezeety_profil_getstart extends AppCompatActivity {
             }
         });
 
+    }
+    private RequestBody getrequestbody(String stringValue){
+        RequestBody  requestBodyByStringValue = RequestBody.create(MediaType.parse("multipart/form-data"), stringValue);
+        return requestBodyByStringValue;
     }
 }

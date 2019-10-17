@@ -11,6 +11,7 @@ import com.packag.ezeety.Pojos.UserSocialNetwork;
 import com.packag.ezeety.Pojos.Users;
 import com.packag.ezeety.Pojos.Villes;
 
+import java.io.File;
 import java.util.Date;
 
 import okhttp3.MultipartBody;
@@ -114,7 +115,12 @@ public interface IWsServices {
                                              @Part("google_place_id") RequestBody place_id,
                                              @Part("ville") RequestBody ville,
                                              @Part("pays") RequestBody pays,
-                                             @Part MultipartBody.Part file
+                                             @Part("profile_picture") File file
                                              );
 
+    @FormUrlEncoded
+    @POST("users/sign_up_2_social_network")
+    Call<MessageBodyHeader> sinUptoSocialNetwork(@Field("email") String email,
+                                                 @Field("nom_prenom") String nom_prenom,
+                                                 @Field("profile_picture") String uri_profil_picture);
 }

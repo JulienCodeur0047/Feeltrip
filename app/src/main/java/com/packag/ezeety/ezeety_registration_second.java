@@ -229,13 +229,11 @@ public class ezeety_registration_second extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
             return true;
         }
         else
             Toast.makeText(ezeety_registration_second.this,"No internet connection", Toast.LENGTH_SHORT).show();
             return false;
-
     }
 
     private void checkUsername(String usename){

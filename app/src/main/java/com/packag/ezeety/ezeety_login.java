@@ -111,10 +111,6 @@ public class ezeety_login extends AppCompatActivity {
 
             }
         });
-
-
-
-
         editTextPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
