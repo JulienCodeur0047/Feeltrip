@@ -51,6 +51,7 @@ public class ezeety_profil_getstart extends AppCompatActivity {
     RegistrationNextActivity ezeety_registration_second = new RegistrationNextActivity();
     ezeety_gallery_activity ezeety_gallery_activity = new ezeety_gallery_activity();
     private static final int CAMERA_REQUEST = 1888;
+    public static Uri uriImage;
     private ImageView imageView;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     CameraFragment cameraFragment = new CameraFragment();
@@ -97,7 +98,7 @@ public class ezeety_profil_getstart extends AppCompatActivity {
         Intent intent =getIntent();
         String imageurix = intent.getStringExtra("uri");
 
-        Uri uriImage = cameraFragment.uriImage;
+        uriImage = cameraFragment.uriImage;
 
 
         if(uriImage != null){
@@ -226,9 +227,12 @@ public class ezeety_profil_getstart extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-            Uri imageUri = data.getData();
+            uriImage = data.getData();
+            if (uriImage != null){
+                imageViewProfilePicture.setImageURI(null);
+            }
             //imageViewProfilePicture.setImageBitmap(photo);
-            imageViewProfilePicture.setImageURI(imageUri);
+            imageViewProfilePicture.setImageURI(uriImage);
             imageViewProfilePicture.setRotation(-90);
         }
     }

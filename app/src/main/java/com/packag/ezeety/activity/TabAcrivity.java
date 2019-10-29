@@ -50,7 +50,7 @@ public class TabAcrivity extends AppCompatActivity {
 
         //textView.setOnClickListener(v -> goTOprofilgetStarted());
 
-
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     private void goTOprofilgetStarted() {
@@ -67,7 +67,7 @@ public class TabAcrivity extends AppCompatActivity {
     public void eventReceiver(MessageEvent event) {
         //Log.d("ZZZZZZZ","TESTS");
         if (event != null){
-            ezeety_profil_getstart.imageViewProfilePicture.setRotation(-90);
+
             textView.setVisibility(View.VISIBLE);
             textView.setOnClickListener(view -> {
                 Intent intent = new Intent(getApplicationContext(), ezeety_profil_getstart.class);
@@ -75,13 +75,18 @@ public class TabAcrivity extends AppCompatActivity {
                 intent.putExtra("uri",event.getMessage());
                 startActivity(intent);
             });
+            ezeety_profil_getstart.imageViewProfilePicture.setRotation(-90);
         }else {
             textView.setVisibility(View.GONE);
         }
 
     }
 
-
+    public boolean onSupportNavigateUp(){
+        Intent HomeUI= new Intent(getApplicationContext(),ezeety_profil_getstart.class);
+        startActivity(HomeUI);
+        return false;
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
