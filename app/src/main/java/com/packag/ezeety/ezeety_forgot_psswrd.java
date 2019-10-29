@@ -3,9 +3,9 @@ package com.packag.ezeety;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +14,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.packag.ezeety.Pojos.BodyData;
-import com.packag.ezeety.Pojos.MessageBodyHeader;
-import com.packag.ezeety.Remote.RetrofitFactory;
-import com.packag.ezeety.interfaces.IWsServices;
+import com.packag.ezeety.model.BodyData;
+import com.packag.ezeety.model.MessageBodyHeader;
+import com.packag.ezeety.Services.RetrofitFactory;
+import com.packag.ezeety.Services.IWsServices;
 
 import retrofit2.Call;
 import retrofit2.Callback;

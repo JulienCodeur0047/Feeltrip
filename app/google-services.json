@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "770204625271",
+    "firebase_url": "https://ezeety-174a1.firebaseio.com",
+    "project_id": "ezeety-174a1",
+    "storage_bucket": "ezeety-174a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770204625271:android:948b85bf7b2dbb67139972",
+        "android_client_info": {
+          "package_name": "com.packag.ezeety"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770204625271-1kmujbbisq78o5k15pq4ein49jq6g4bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5oZpo4ZLU7helBdJexGQP9R-bHtXXyKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770204625271-1kmujbbisq78o5k15pq4ein49jq6g4bm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

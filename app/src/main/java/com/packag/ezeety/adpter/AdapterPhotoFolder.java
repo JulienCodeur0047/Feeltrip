@@ -1,0 +1,92 @@
+package com.packag.ezeety.adpter;
+
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.packag.ezeety.model.ModelImage;
+import com.packag.ezeety.R;
+
+import java.util.ArrayList;
+
+public class AdapterPhotoFolder extends ArrayAdapter<ModelImage> {
+    Context context;
+    ViewHolder viewHolder;
+    ArrayList<ModelImage> allMenu = new ArrayList<>();
+
+
+    public AdapterPhotoFolder(Context context, ArrayList<ModelImage> allmenu) {
+        super(context, R.layout.layout_ezeety_photo_folder, allmenu);
+        this.allMenu = allmenu;
+        this.context = context;
+
+
+    }
+
+    @Override
+    public int getCount() {
+
+        Log.e("ADAPTER LIST SIZE", allMenu.size() + "");
+        return allMenu.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        if (allMenu.size() > 0) {
+            return allMenu.size();
+        } else {
+            return 1;
+        }
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+
+        if (convertView == null) {
+
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_ezeety_photo_folder, parent, false);
+            /*viewHolder.tv_foldern = (TextView) convertView.findViewById(R.id.tv_folder);
+            viewHolder.tv_foldersize = (TextView) convertView.findViewById(R.id.tv_folder2);*/
+            viewHolder.iv_image = (ImageView) convertView.findViewById(R.id.imageViewItem);
+
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+
+
+        Glide.with(context).load("file://" + allMenu.get(position).getAllimagePath().get(0))
+                .into(viewHolder.iv_image);
+
+
+        return convertView;
+
+    }
+
+    private static class ViewHolder {
+        TextView tv_foldern, tv_foldersize;
+        ImageView iv_image;
+
+
+    }
+}

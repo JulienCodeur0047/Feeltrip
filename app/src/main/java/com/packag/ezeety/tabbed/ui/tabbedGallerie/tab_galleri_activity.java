@@ -7,10 +7,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,9 +18,9 @@ import android.widget.GridView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-import com.packag.ezeety.Pojos.ModelImage;
+import com.packag.ezeety.model.ModelImage;
 import com.packag.ezeety.R;
-import com.packag.ezeety.SettingView.AdapterPhotoFolder;
+import com.packag.ezeety.adpter.AdapterPhotoFolder;
 
 import java.util.ArrayList;
 
@@ -37,12 +37,12 @@ import java.util.ArrayList;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_ezeety_tab_galleri);
-        gridViewFolder = (GridView) findViewById(R.id.gridview_image);
-        tabhost = findViewById(R.id.tabHostgalleri);
+        setContentView(R.layout.camera_fragment);
+//        gridViewFolder = (GridView) findViewById(R.id.gridview_image);
+       // tabhost = findViewById(R.id.tabHostgalleri);
         tabhost.setOnTabChangedListener(this);
         tabhost.setup();
-        addTabs("Galleri","GALLERI",R.id.tabGalleri);
+     //   addTabs("Galleri","GALLERI",R.id.tabGalleri);
         addTabs("Photo","PHOTO",R.id.tabPhoto);
 
 

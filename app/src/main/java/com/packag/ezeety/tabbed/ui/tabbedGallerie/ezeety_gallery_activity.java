@@ -13,11 +13,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +31,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.packag.ezeety.Pojos.ModelImage;
+import com.packag.ezeety.model.ModelImage;
 import com.packag.ezeety.R;
-import com.packag.ezeety.SettingView.AdapterPhotoFolder;
-import com.packag.ezeety.SettingView.GridViewAdapter;
-import com.packag.ezeety.SettingView.SettingImageBitmap;
+import com.packag.ezeety.adpter.AdapterPhotoFolder;
+import com.packag.ezeety.adpter.GridViewAdapter;
+import com.packag.ezeety.adpter.SettingImageBitmap;
 import com.packag.ezeety.ezeety_profil_getstart;
 
 import java.io.ByteArrayOutputStream;
@@ -68,14 +67,14 @@ public class ezeety_gallery_activity extends AppCompatActivity implements TabHos
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ListImageFile = AllimageReader(Environment.getExternalStorageDirectory());
-        setContentView(R.layout.layout_ezeety_tab_galleri);
-        textViewBacktoProfilStarted = findViewById(R.id.textViewButtonBackToProfilStarted);
-        textViewNexSetoPicture = findViewById(R.id.textViewNexttoSetPicture);
-        linearLayoutFlotingImage = (LinearLayout) findViewById(R.id.linearLayoutFlotingImage);
-        imageViewSelectedImage = findViewById(R.id.imageViewSelectedImage);
+        setContentView(R.layout.camera_fragment);
+//        textViewBacktoProfilStarted = findViewById(R.id.textViewButtonBackToProfilStarted);
+      //  textViewNexSetoPicture = findViewById(R.id.textViewNexttoSetPicture);
+      //  linearLayoutFlotingImage = (LinearLayout) findViewById(R.id.linearLayoutFlotingImage);
+      //  imageViewSelectedImage = findViewById(R.id.imageViewSelectedImage);
         imageViewbutonCamera = findViewById(R.id.imageViewbuttoncamera);
         imageViewPreviewCamera = findViewById(R.id.imageViewpreviewfromcamera);
-        gridViewImge = findViewById(R.id.gridview_image);
+      //  gridViewImge = findViewById(R.id.gridview_image);
 
         imageViewbutonCamera.setOnClickListener(new View.OnClickListener() {
 
@@ -145,11 +144,11 @@ public class ezeety_gallery_activity extends AppCompatActivity implements TabHos
 
 
 
-        tabhost = findViewById(R.id.tabHostgalleri);
+      //  tabhost = findViewById(R.id.tabHostgalleri);
         tabhost.setOnTabChangedListener(this);
         tabhost.setup();
         addTabs("Photo","PHOTO",R.id.tabPhoto);
-        addTabs("Galleri","GALERIE",R.id.tabGalleri);
+       // addTabs("Galleri","GALERIE",R.id.tabGalleri);
 
 
 
@@ -176,10 +175,9 @@ public class ezeety_gallery_activity extends AppCompatActivity implements TabHos
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK)
-        {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageUri = data.getData().toString();
             imageViewPreviewCamera.setImageURI(Uri.parse(imageUri));
@@ -312,8 +310,6 @@ public class ezeety_gallery_activity extends AppCompatActivity implements TabHos
                         80,80));
             }
             Glide.with(ezeety_gallery_activity.this).load(ListImageFile.get(i))
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
                     .into(imageViewSelectedImage);
             return convertView;
         }

@@ -5,12 +5,15 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-  <RelativeLayout
-      android:id="@+id/rLPlaceChoice"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@drawable/ezeety_home_search_style">
-
+  <androidx.cardview.widget.CardView
+      android:layout_width="200dp"
+      android:layout_height="200dp"
+      android:layout_marginLeft="5dp"
+      android:layout_marginRight="5dp"
+      android:layout_marginBottom="5dp"
+      android:layout_marginTop="5dp"
+      app:cardCornerRadius="10dp"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,11 +34,11 @@
           android:paddingTop="10dp"
           android:paddingRight="25dp"
           android:paddingBottom="10dp"
-          android:text="Proprety of Place choice. and click in searching  "
+          android:text="Place Property"
           android:textSize="18dp" />
     </LinearLayout>
-  </RelativeLayout>
 
+  </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>

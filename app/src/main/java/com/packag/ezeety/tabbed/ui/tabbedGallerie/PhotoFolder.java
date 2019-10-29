@@ -1,12 +1,12 @@
 package com.packag.ezeety.tabbed.ui.tabbedGallerie;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.GridView;
 
 import com.packag.ezeety.R;
-import com.packag.ezeety.SettingView.GridViewAdapter;
+import com.packag.ezeety.adpter.GridViewAdapter;
 
 public class PhotoFolder extends AppCompatActivity {
 
@@ -17,8 +17,8 @@ public class PhotoFolder extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_ezeety_tab_galleri);
-        gridView = (GridView)findViewById(R.id.gridview_image);
+        setContentView(R.layout.camera_fragment);
+//        gridView = (GridView)findViewById(R.id.gridview_image);
         int_position = getIntent().getIntExtra("value", 0);
         adapter = new GridViewAdapter(this,tab_galleri_activity.allImages,int_position);
         gridView.setAdapter(adapter);

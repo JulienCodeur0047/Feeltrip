@@ -16,24 +16,37 @@
         tools:replace="android:appComponentFactory"
         tools:ignore="AllowBackup"
         tools:targetApi="p">
-        <activity android:name=".ezeety_home" />
-        <activity android:name=".ezeety_login" />
-        <activity android:name=".ezeety_registration" />
-        <activity android:name=".ezeety_registration_second" />
-        <activity android:name=".ezeety_welcome" />
-        <activity android:name=".ezeety_profil_getstart" />
-        <activity android:name=".ezeety_gallerie"/>
-        <activity android:name=".tabbed.ui.tabbedGallerie.tab_galleri_activity"/>
-        <activity android:name=".tabbed.ui.tabbedGallerie.PhotoFolder"/>
-        <activity android:name=".ezeety_forgot_psswrd"/>
-        <activity android:name=".ezeety_forgot_password_processing"/>
-        <activity android:name=".tabbed.ui.tabbedGallerie.ezeety_gallery_activity"/>
+        <activity android:name=".activity.HomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RegistrationAcivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RegistrationNextActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.WelcomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ezeety_profil_getstart"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.TabAcrivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ezeety_gallerie"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".tabbed.ui.tabbedGallerie.tab_galleri_activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".tabbed.ui.tabbedGallerie.PhotoFolder"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ezeety_forgot_psswrd"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ezeety_forgot_password_processing"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".tabbed.ui.tabbedGallerie.ezeety_gallery_activity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

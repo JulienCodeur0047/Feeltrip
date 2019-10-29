@@ -4,18 +4,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.packag.ezeety.Pojos.MessageBodyHeader;
-import com.packag.ezeety.Remote.RetrofitFactory;
-import com.packag.ezeety.interfaces.IWsServices;
+import com.packag.ezeety.activity.LoginActivity;
+import com.packag.ezeety.model.MessageBodyHeader;
+import com.packag.ezeety.Services.RetrofitFactory;
+import com.packag.ezeety.Services.IWsServices;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,7 +87,7 @@ public class ezeety_forgot_password_processing extends AppCompatActivity {
                             AlertSucces.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent intentLogin = new Intent(ezeety_forgot_password_processing.this, ezeety_login.class);
+                                    Intent intentLogin = new Intent(ezeety_forgot_password_processing.this, LoginActivity.class);
                                     startActivity(intentLogin);
                                     return;
                                 }

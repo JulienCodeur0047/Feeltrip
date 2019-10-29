@@ -1,12 +1,14 @@
 package com.packag.ezeety.tabbed.ui.tabbedGallerie;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.packag.ezeety.R;
+import com.packag.ezeety.fragment.CameraFragment;
+import com.packag.ezeety.fragment.GalleryFragment;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
@@ -18,8 +20,8 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     }
     @Override
     public Fragment getItem(int i) {
-        if(i==0) return new tab_galleri();
-        return new tab_photo();
+        if(i==0) return new GalleryFragment();
+        return new CameraFragment();
     }
 
     @Override
@@ -35,8 +37,7 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
                 return mContext.getString(R.string.title_tab_gallerie);
             case 1:
                 return mContext.getString(R.string.title_tab_photo);
-            default:
-                return null;
+            default: return null;
         }
     }
 
